@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>23BCE1837</title>
+    <script>
+        let seats = Array(10).fill(0);
+
+        function assignSeat() {
+            let name = prompt("Enter passenger name:");
+            let section = parseInt(prompt("Enter 1 for First Class (Seats 1-5) or 2 for Economy (Seats 6-10):"));
+            
+            let start = section === 1 ? 0 : 5;
+            let end = section === 1 ? 5 : 10;
+            let seatAssigned = false;
+            
+            for (let i = start; i < end; i++) {
+                if (seats[i] === 0) {
+                    seats[i] = 1;
+                    alert(`Boarding Pass:\nName: ${name}\nSeat Number: ${i + 1}\nClass: ${section === 1 ? 'First Class' : 'Economy'}`);
+                    seatAssigned = true;
+                    break;
+                }
+            }
+            
+            if (!seatAssigned) {
+                let alternative = confirm("Selected section full. Would you like a seat in the other section?");
+                if (alternative) {
+                    assignSeat();
+                } else {
+                    alert("Next flight leaves in 3 hours.");
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="assignSeat()">
+</body>
+</html>
